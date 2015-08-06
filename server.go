@@ -186,13 +186,18 @@ func ConfigureServer(s *http.Server, conf *Server) {
 		if testHookOnConn != nil {
 			testHookOnConn()
 		}
-		conf.handleConn(hs, c, h)
+		conf.HandleConn(hs, c, h)
 	}
 	s.TLSNextProto[NextProtoTLS] = protoHandler
 	s.TLSNextProto["h2-14"] = protoHandler // temporary; see above.
 }
 
-func (srv *Server) handleConn(hs *http.Server, c net.Conn, h http.Handler) {
+// HandleConn handles the net.Conn for the given net/http Server as h2, using a
+// net/http Handler.
+//
+// This must only be used to serve h2 over an already established TLS session.
+// For cleartext transports, see h2c.
+func (srv *Server) HandleConn(hs *http.Server, c net.Conn, h http.Handler) {
 	sc := &serverConn{
 		srv:              srv,
 		hs:               hs,
