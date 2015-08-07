@@ -55,7 +55,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bradfitz/http2/hpack"
+	"github.com/joushou/http2/hpack"
 )
 
 const (

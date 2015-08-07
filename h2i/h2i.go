@@ -36,8 +36,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/bradfitz/http2"
-	"github.com/bradfitz/http2/hpack"
+	"github.com/joushou/http2"
+	"github.com/joushou/http2/hpack"
 	"golang.org/x/crypto/ssh/terminal"
 )
 
